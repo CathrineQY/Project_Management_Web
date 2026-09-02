@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="生命的快递 AED 智能应急投送系统人员调度管理台">
+  <title>生命的快递 | 人员调度台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark">AED</span>
+        <div><strong>生命的快递</strong><small>项目调度台</small></div>
+      </div>
+      <nav class="main-nav" aria-label="主导航">
+        <button class="nav-item active" type="button" data-view="overview"><span class="nav-icon">⌂</span><span>调度总览</span></button>
+        <button class="nav-item" type="button" data-view="people"><span class="nav-icon">人</span><span>岗位池</span><b id="people-count">17</b></button>
+        <button class="nav-item" type="button" data-view="allocation"><span class="nav-icon">+</span><span>任务分配</span><b id="open-task-count">6</b></button>
+        <button class="nav-item" type="button" data-view="schedule"><span class="nav-icon">▦</span><span>调度排班</span></button>
+        <button class="nav-item" type="button" data-view="wbs"><span class="nav-icon">⌘</span><span>扩展 WBS</span></button>
+      </nav>
+      <div class="sidebar-project">
+        <div class="sidebar-project-head"><span>项目进度</span><strong>168 / 220 天</strong></div>
+        <div class="progress-track"><i style="width:76%"></i></div>
+        <p>系统集成与实地联调阶段</p>
+        <button type="button" id="open-baseline">查看原始 WBS</button>
+      </div>
+      <div class="account"><span>林</span><div><strong>林书遥</strong><small>项目总负责人</small></div><button type="button" aria-label="账户菜单" title="账户菜单">•••</button></div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menu-button" type="button" aria-label="打开菜单" title="打开菜单">☰</button>
+        <div class="breadcrumb"><span>AED 智能应急投送系统</span><i>/</i><strong id="view-label">调度总览</strong></div>
+        <div class="top-actions">
+          <div class="sync-state"><i></i><span>数据已同步</span></div>
+          <button class="date-control" type="button" title="当前排班日期"><span>2026.06.22</span><b>汇报日</b></button>
+          <button class="icon-button" id="reset-data" type="button" aria-label="重置演示数据" title="重置演示数据">↻</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="view active" data-view-panel="overview">
+          <div class="page-heading">
+            <div><p class="eyebrow">COMMAND CENTER / 06.22</p><h1>今日调度总览</h1><p>实地集成测试进入 T-4 小时，优先保障飞行安全、通信链路与现场急救协同。</p></div>
+            <button class="primary-button" type="button" data-go="allocation"><span>+</span> 新建任务分配</button>
+          </div>
+
+          <div class="alert-strip"><span class="alert-sign">!</span><div><strong>1 项岗位覆盖风险</strong><p>14:00 全流程联调尚缺 1 名现场志愿者，建议从东园志愿者组调入。</p></div><button type="button" data-go="allocation">立即处理 <span>→</span></button></div>
+
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-top"><span>在岗人员</span><i class="metric-icon green">人</i></div><strong id="metric-on-duty">14<small>/ 17</small></strong><p><b class="up">+2</b> 较上午测试窗口</p></article>
+            <article class="metric-card"><div class="metric-top"><span>今日任务</span><i class="metric-icon blue">✓</i></div><strong id="metric-tasks">8<small>项</small></strong><p><b id="metric-complete">2</b> 项已完成</p></article>
+            <article class="metric-card"><div class="metric-top"><span>平均负荷</span><i class="metric-icon amber">%</i></div><strong id="metric-load">68<small>%</small></strong><p><b>2 人</b> 接近负荷上限</p></article>
+            <article class="metric-card"><div class="metric-top"><span>岗位覆盖率</span><i class="metric-icon red">○</i></div><strong id="metric-coverage">92<small>%</small></strong><p><b class="risk">缺口 1</b> 现场志愿者</p></article>
+          </div>
+
+          <div class="overview-grid">
+            <article class="panel today-panel">
+              <div class="panel-head"><div><h2>今日任务流</h2><p>按开始时间与风险优先级排序</p></div><button class="text-button" type="button" data-go="allocation">全部任务 →</button></div>
+              <div class="task-flow" id="overview-tasks"></div>
+            </article>
+            <article class="panel coverage-panel">
+              <div class="panel-head"><div><h2>岗位覆盖</h2><p>关键岗位实时配备情况</p></div><span class="live-label"><i></i> LIVE</span></div>
+              <div id="coverage-list" class="coverage-list"></div>
+              <div class="coverage-legend"><span><i class="ok"></i>已覆盖</span><span><i class="warn"></i>临界</span><span><i class="empty"></i>缺岗</span></div>
+            </article>
+          </div>
+
+          <article class="panel mini-schedule">
+            <div class="panel-head"><div><h2>关键资源时间轴</h2><p>核心成员与现场岗位 · 08:00—18:00</p></div><button class="seg-button" type="button" data-go="schedule">展开排班</button></div>
+            <div id="mini-timeline"></div>
+          </article>
+        </section>
+
+        <section class="view" data-view-panel="people">
+          <div class="page-heading compact"><div><p class="eyebrow">RESOURCE POOL</p><h1>岗位与人员池</h1><p>17 名项目成员按研发、飞行、现场、后勤四类资源统一调度。</p></div><button class="secondary-button" id="export-people" type="button">导出岗位清单</button></div>
+          <div class="people-toolbar">
+            <label class="search-box"><span>⌕</span><input id="people-search" type="search" placeholder="搜索姓名、岗位或技能"></label>
+            <div class="filter-tabs" id="people-filters"><button class="active" type="button" data-filter="all">全部 <b>17</b></button><button type="button" data-filter="核心组">核心组</button><button type="button" data-filter="飞行组">飞行组</button><button type="button" data-filter="现场组">现场组</button><button type="button" data-filter="保障组">保障组</button></div>
+            <label class="availability-toggle"><input id="available-only" type="checkbox"><span></span>仅看可调度</label>
+          </div>
+          <div class="people-summary" id="people-summary"></div>
+          <div class="people-grid" id="people-grid"></div>
+          <div class="empty-state" id="people-empty" hidden><strong>未找到匹配人员</strong><p>尝试更换关键词或筛选条件。</p></div>
+        </section>
+
+        <section class="view" data-view-panel="allocation">
+          <div class="page-heading compact"><div><p class="eyebrow">TASK ASSIGNMENT</p><h1>任务分配</h1><p>从细化后的 WBS 工作包中选择任务，并匹配具备对应技能的人员。</p></div><span class="allocation-hint">选择左侧任务开始分配</span></div>
+          <div class="allocation-layout">
+            <article class="panel task-library">
+              <div class="task-library-head"><label class="search-box"><span>⌕</span><input id="task-search" type="search" placeholder="搜索任务或 WBS 编码"></label><select id="task-status-filter" aria-label="任务状态"><option value="all">全部状态</option><option value="待分配">待分配</option><option value="部分到位">部分到位</option><option value="已就绪">已就绪</option><option value="已完成">已完成</option></select></div>
+              <div class="task-list" id="task-list"></div>
+            </article>
+            <article class="panel assignment-panel" id="assignment-panel">
+              <div class="assignment-placeholder"><span>+</span><h2>选择一项任务</h2><p>查看岗位需求、时间冲突并完成人员分配。</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" data-view-panel="schedule">
+          <div class="page-heading compact"><div><p class="eyebrow">DAILY ROSTER</p><h1>调度排班</h1><p>以角色泳道查看 06 月 22 日全部资源占用与交接窗口。</p></div><div class="schedule-controls"><button class="icon-button" type="button" title="前一天">←</button><strong>06 月 22 日 · 周一</strong><button class="icon-button" type="button" title="后一天">→</button></div></div>
+          <div class="schedule-status"><span><i class="dot green-dot"></i>已就绪</span><span><i class="dot amber-dot"></i>待补位</span><span><i class="dot red-dot"></i>高风险</span><p>当前时间 <strong>13:20</strong></p></div>
+          <article class="panel full-schedule"><div class="timeline-scroll" id="full-timeline"></div></article>
+          <div class="handoff-grid"><article class="panel"><div class="panel-head"><div><h2>交接事项</h2><p>跨岗位协作检查</p></div></div><div id="handoff-list"></div></article><article class="panel"><div class="panel-head"><div><h2>冲突与建议</h2><p>基于当前分配自动检查</p></div></div><div id="conflict-list"></div></article></div>
+        </section>
+
+        <section class="view" data-view-panel="wbs">
+          <div class="page-heading compact"><div><p class="eyebrow">WORK BREAKDOWN STRUCTURE</p><h1>扩展 WBS</h1><p>保留原 5 人 WBS 责任基线，将叶子节点继续拆至可排班、可验收的现场工作包。</p></div><button class="secondary-button" id="open-baseline-top" type="button">对照原图</button></div>
+          <div class="wbs-key"><span><i class="core-key"></i>原 WBS 核心工作包</span><span><i class="new-key"></i>新增可调度叶子任务</span><span><i class="role-key"></i>执行岗位</span></div>
+          <div class="wbs-board" id="wbs-board"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="person-dialog" class="person-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><div id="person-detail"></div></dialog>
+  <dialog id="baseline-dialog" class="baseline-dialog"><button class="dialog-close" type="button" aria-label="关闭">×</button><div class="baseline-head"><p class="eyebrow">BASELINE / LEVEL 0—3</p><h2>原始 WBS 基线</h2></div><img src="WBS（上交版）.jpg" alt="AED 智能应急投送系统原始 WBS"></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

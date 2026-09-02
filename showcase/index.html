@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="生命的快递：基于无人机与物联网技术的 AED 智能应急投送系统成果展示。">
+  <title>生命的快递｜无人机 AED 智能应急投送系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top"><span class="brand-mark">AED</span><span>生命的快递</span></a>
+    <nav aria-label="主导航"><a href="#hardware">硬件</a><a href="#algorithm">算法</a><a href="#simulation">仿真</a><a href="#flight">实飞</a><a href="#dispatch">呼叫原型</a></nav>
+    <button class="menu-button" type="button" aria-label="打开导航" aria-expanded="false">菜单</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-shade"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">无人机 × 物联网 × 智慧急救</p>
+        <h1>生命的快递</h1>
+        <p class="hero-lead">基于风险感知路径规划的 AED 智能应急投送系统，让急救设备越过地面拥堵，向“黄金四分钟”靠近。</p>
+        <div class="hero-actions"><a class="button primary" href="#results">查看成果</a><a class="button ghost" href="#dispatch">体验呼叫</a></div>
+      </div>
+      <div class="hero-stats reveal"><div><strong>100%</strong><span>仿真四分钟覆盖率</span></div><div><strong>10 km</strong><span>标称遥控距离</span></div><div><strong>2 kg</strong><span>最大载荷</span></div></div>
+    </section>
+
+    <section class="mission band">
+      <div class="section-inner mission-grid">
+        <div class="section-heading reveal"><p class="eyebrow">项目使命</p><h2>让 AED 主动<br>抵达现场</h2></div>
+        <div class="mission-copy reveal"><p>固定 AED 存在布设盲区与人工往返时间，救护车又受到地面交通制约。项目将“呼救、调度、规划、飞行、投送、教学”串成一条可演示的救援链路。</p><div class="flow-line"><span>01 呼救定位</span><i></i><span>02 智能调度</span><i></i><span>03 空域直达</span><i></i><span>04 现场施救</span></div></div>
+      </div>
+    </section>
+
+    <section id="hardware">
+      <div class="section-inner">
+        <div class="section-heading split-heading reveal"><div><p class="eyebrow">硬件平台</p><h2>从载具到投送机构</h2></div><p>六旋翼平台承担航点飞行与载荷投送，机载计算与飞控协同完成路径执行。</p></div>
+        <div class="hardware-showcase">
+          <figure class="hardware-image reveal"><img src="展示图.png" alt="无人机整机及核心组件标注图"><figcaption>原型机实物配置</figcaption></figure>
+          <div class="spec-panel reveal"><p class="panel-label">SY800-2 平台参数</p><div class="primary-spec"><strong>30</strong><span>分钟<br>空载续航</span></div><div class="spec-grid"><div><span>轴距</span><strong>800 mm</strong></div><div><span>最大起飞重量</span><strong>6 kg</strong></div><div><span>飞行速度</span><strong>2–17 m/s</strong></div><div><span>飞行高度</span><strong>500 m</strong></div><div><span>图传距离</span><strong>5 km</strong></div><div><span>实时图传</span><strong>1080P</strong></div></div><button class="text-button" type="button" data-modal-open="spec-modal">查看完整参数表 <span>＋</span></button></div>
+        </div>
+        <div class="component-strip reveal"><div><span>01</span><strong>NxtPX4 飞控</strong><p>航姿解算与任务执行</p></div><div><span>02</span><strong>机载计算机</strong><p>算法部署与通信中枢</p></div><div><span>03</span><strong>6S LiPo 电池</strong><p>高功率飞行动力</p></div><div><span>04</span><strong>Dynamixel 舵机</strong><p>载荷投送执行机构</p></div></div>
+      </div>
+    </section>
+
+    <section class="scenarios band">
+      <div class="section-inner"><div class="section-heading split-heading reveal"><div><p class="eyebrow">应用场景</p><h2>复杂地形，空中直达</h2></div><p>面向校园、景区与城市高层等地面救援受限环境，提供机动的 AED 补充网络。</p></div>
+        <div class="scenario-grid"><article class="scenario-card reveal"><img src="图/图片1.png" alt="体育场 AED 投送"><div><span>01</span><h3>校园与大型场馆</h3><p>越过人流与围栏，快速抵达操场、场馆和宿舍区。</p></div></article><article class="scenario-card reveal"><img src="图/图片2.png" alt="山地 AED 投送"><div><span>02</span><h3>山地与景区</h3><p>绕开曲折道路，沿低风险走廊完成跨地形投送。</p></div></article><article class="scenario-card reveal"><img src="图/图片3.png" alt="城市高层无人机"><div><span>03</span><h3>城市高层</h3><p>规划三维航路，缓解拥堵与垂直运输造成的延误。</p></div></article></div>
+      </div>
+    </section>
+
+    <section class="algorithm" id="algorithm">
+      <div class="section-inner"><div class="section-heading split-heading reveal"><div><p class="eyebrow">核心算法</p><h2>风险不只是障碍物</h2></div><p>在改进 A* 中共同考虑建筑物静态风险与无人机动态风险。</p></div>
+        <div class="algorithm-layout">
+          <div class="algorithm-visual reveal"><div class="city-grid"></div><div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><svg viewBox="0 0 700 460" role="img" aria-label="风险感知规划路径"><path class="route-shadow" d="M55 390 C170 360 170 250 270 255 S380 345 450 225 S560 125 645 70"/><path class="route" d="M55 390 C170 360 170 250 270 255 S380 345 450 225 S560 125 645 70"/><circle class="start" cx="55" cy="390" r="8"/><circle class="end" cx="645" cy="70" r="10"/></svg><div class="risk-zone risk-a"></div><div class="risk-zone risk-b"></div><div class="visual-legend"><span><i class="low"></i>规划航迹</span><span><i class="high"></i>高风险区</span></div></div>
+          <div class="algorithm-steps reveal"><button class="algo-step active" type="button" data-step="0"><span>01</span><div><strong>体素化环境</strong><p>将城市空间离散为三维网格，并对建筑障碍进行安全膨胀。</p></div></button><button class="algo-step" type="button" data-step="1"><span>02</span><div><strong>双重风险建模</strong><p>静态场描述建筑风险，动态场描述机间距离、速度与方向风险。</p></div></button><button class="algo-step" type="button" data-step="2"><span>03</span><div><strong>风险感知 A*</strong><p>在路径长度、建筑风险、机间风险和转向代价之间取得平衡。</p></div></button><button class="algo-step" type="button" data-step="3"><span>04</span><div><strong>FCFS 动态更新</strong><p>逐架规划，每条新路径都会更新时变全局风险图。</p></div></button></div>
+        </div>
+        <div class="formula-bar reveal"><span>综合代价</span><strong>F(n) = G(n) + H(n) + λ<sub>b</sub>R<sub>b</sub> + λ<sub>d</sub>R<sub>d</sub> + λ<sub>t</sub>C<sub>turn</sub></strong><p>更短不等于更安全，以可控的路径增量换取风险显著下降。</p></div>
+      </div>
+    </section>
+
+    <section class="simulation band" id="simulation">
+      <div class="section-inner"><div class="section-heading split-heading reveal"><div><p class="eyebrow">仿真验证</p><h2>路径在二维与三维中成立</h2></div><div class="segmented"><button class="active" type="button" data-sim="single">单机</button><button type="button" data-sim="multi">双机协同</button></div></div><div class="sim-grid reveal"><figure><div class="media-label"><span>TOP VIEW</span><b>2D 航迹</b></div><img id="sim-2d" src="simulation_2d.gif" alt="单机二维仿真"></figure><figure><div class="media-label"><span>SPATIAL VIEW</span><b>3D 航迹</b></div><img id="sim-3d" src="simulation_3d.gif" alt="单机三维仿真"></figure></div><p class="sim-note" id="sim-note">单机规划展示航迹如何避开障碍与高风险区域，并保持连续、可执行的转向。</p></div>
+    </section>
+
+    <section id="results"><div class="section-inner"><div class="section-heading split-heading reveal"><div><p class="eyebrow">定量结果</p><h2>将响应时间变成可比较的数据</h2></div><p>校园场景统一采样仿真结果，用于方案对比，不代表真实医疗服务承诺。</p></div><div class="result-grid"><article class="result-main reveal"><span>黄金四分钟覆盖率</span><strong>100<small>%</small></strong><div class="bar-chart"><div style="--v:100%"><i></i><span>无人机 <b>100%</b></span></div><div style="--v:69.5%"><i></i><span>固定 AED <b>69.50%</b></span></div><div style="--v:52.78%"><i></i><span>救护车 <b>52.78%</b></span></div></div></article><article class="result-card reveal"><span>对比固定 AED</span><strong>+30.5<small>pp</small></strong><p>四分钟覆盖率提升</p></article><article class="result-card reveal"><span>测试航点到达率</span><strong>90<small>%</small></strong><p>校园 10 次测试记录</p></article><article class="result-card reveal"><span>系统原型预算</span><strong>2<small>万元</small></strong><p>建设期成本基线</p></article></div></div></section>
+
+    <section class="flight band" id="flight"><div class="section-inner"><div class="section-heading split-heading reveal"><div><p class="eyebrow">实飞验证</p><h2>从仿真航迹到真实飞行</h2></div><p>多轮校园试飞覆盖悬停、巡航、转向与航点到达。</p></div><div class="video-shell reveal"><video controls preload="metadata" poster="展示图.png"><source src="实飞视频.mp4" type="video/mp4">当前浏览器不支持视频。</video><div class="video-meta"><span>FIELD TEST / CAMPUS</span><div><b>稳定巡航</b><b>航点执行</b><b>投送验证</b></div></div></div></div></section>
+
+    <section class="dispatch" id="dispatch"><div class="section-inner dispatch-grid">
+      <div class="dispatch-copy reveal"><p class="eyebrow">交互原型</p><h2>在网页里走通一次呼救</h2><p>基于小程序视觉稿重构的交互演示，模拟定位、任务创建、无人机调度与预计到达反馈。</p><div class="prototype-note"><span>可交互</span><p>发起呼叫后，状态会推进到起飞、航行和抵达，可随时重置。</p></div><div class="original-screens"><button type="button" data-screen="小程序-呼叫.png">原始呼叫稿</button><button type="button" data-screen="小程序-教学.png">原始教学稿</button><button type="button" data-screen="小程序-志愿者.png">原始志愿者稿</button></div></div>
+      <div class="phone-wrap reveal"><div class="phone"><div class="phone-status"><span>10:24</span><span>5G　92%</span></div><div class="phone-head"><strong>智慧 AED 救援</strong><span>演示模式</span></div><div class="phone-body">
+        <section class="phone-pane active" data-pane="call"><div class="mock-map"><div class="map-road r1"></div><div class="map-road r2"></div><svg viewBox="0 0 340 390"><path id="dispatch-route" d="M55 90 C110 145 125 240 260 300"/></svg><div class="base-pin"><i></i><span>无人机基地</span></div><div class="sos-pin"><i>SOS</i><span>呼救点</span></div><div class="drone-dot" id="drone-dot">✦</div><div class="map-tip" id="map-tip">高精度定位已启用</div></div><div class="dispatch-sheet"><div class="location-row"><span>定位</span><div><b>东园宿舍 · B栋</b><small>定位精度约 8 米</small></div><button type="button" id="locate-button">刷新</button></div><div class="dispatch-status" id="dispatch-status"><span class="status-dot"></span><div><b>救援服务待命</b><small>紧急情况请优先拨打 120</small></div><strong id="eta">--:--</strong></div><button class="sos-button" id="sos-button" type="button"><span>一键呼救</span><small>调度无人机投送 AED</small></button><button class="reset-button" id="reset-button" type="button" hidden>重置演示</button></div></section>
+        <section class="phone-pane image-pane" data-pane="guide"><img src="小程序-教学.png" alt="AED 教学页面"></section><section class="phone-pane image-pane" data-pane="volunteer"><img src="小程序-志愿者.png" alt="志愿者页面"></section>
+      </div><div class="phone-tabs"><button class="active" type="button" data-tab="call"><span>⌖</span>呼救</button><button type="button" data-tab="guide"><span>＋</span>教学</button><button type="button" data-tab="volunteer"><span>◎</span>志愿者</button></div></div></div>
+    </div></section>
+  </main>
+
+  <footer><div><span class="brand-mark">AED</span><strong>生命的快递</strong></div><p>基于无人机与物联网技术的 AED 智能应急投送系统</p><a href="#top">返回顶部 ↑</a></footer>
+  <dialog id="spec-modal" class="image-modal"><button type="button" aria-label="关闭">×</button><img src="参数表.jpg" alt="完整参数表"></dialog>
+  <dialog id="screen-modal" class="image-modal phone-modal"><button type="button" aria-label="关闭">×</button><img src="小程序-呼叫.png" alt="小程序视觉稿"></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
